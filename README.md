@@ -40,7 +40,7 @@
 
 ## 文档
 
-- [API Reference](./doc/api-reference.md)
+- [API Reference](./doc/zh-cn/api-reference.md)
 
 ## 线路图
 
