@@ -40,7 +40,7 @@ export class ConfigurationService implements IConfigurationService {
     });
   }
 
-  getConfigration(selection: string) {
+  getConfiguration(selection: string) {
     return new Configuration(this._store, selection);
   }
 }

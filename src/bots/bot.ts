@@ -1,6 +1,6 @@
 export interface IBotResource {
   name: string;
-  status: 'waiting' | 'scaning' | 'running' | 'stoped';
+  status: 'waiting' | 'scaning' | 'running' | 'stopped';
   object: 'bot.run';
   created: number;
 }

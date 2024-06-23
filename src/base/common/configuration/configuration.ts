@@ -42,5 +42,5 @@ export interface IConfigurationChangeEvent {
 export interface IConfigurationService {
   onDidChangeConfiguration: Event<IConfigurationChangeEvent>;
 
-  getConfigration(selection: string): Configuration;
+  getConfiguration(selection: string): Configuration;
 }
