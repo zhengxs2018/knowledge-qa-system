@@ -32,7 +32,7 @@ Related guide: [Bots](#bots) and Wechaty Puppets.
 
 ### Create puppet and run
 
-`GET /bots/:name/runs/create`
+`POST /bots/:name/runs`
 
 Create a puppet and run it in one request.
 
