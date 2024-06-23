@@ -10,7 +10,7 @@ module.exports = defineConfig({
   overrides: [
     {
       extends: ['plugin:@typescript-eslint/recommended'],
-      plugins: ['@typescript-eslint', 'import', 'tsdoc'],
+      plugins: ['@typescript-eslint', 'import', 'jsdoc'],
       parser: '@typescript-eslint/parser',
       parserOptions: {
         ecmaVersion: 'latest',
@@ -21,8 +21,7 @@ module.exports = defineConfig({
         '@typescript-eslint/ban-ts-comment': 'off',
         '@typescript-eslint/no-non-null-assertion': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
-        '@typescript-eslint/no-namespace': 'off',
-        'tsdoc/syntax': 'warn',
+        '@typescript-eslint/no-namespace': 'off'
       },
     },
     {
