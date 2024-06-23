@@ -4,7 +4,7 @@ import { inject, injectable } from 'inversify';
 import { IEnvironmentService } from '../base/common/environment/environment';
 import type { IDatabaseService } from './database';
 import { type DatabaseConnection } from './drivers/dirivers';
-import { type IEntity } from './entities/entites';
+import { type IEntity } from './entities/entities';
 import { initDatabase } from './init/init';
 import { type Schema } from './schema/schema';
 

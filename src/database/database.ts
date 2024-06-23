@@ -1,7 +1,7 @@
 import { type interfaces } from 'inversify';
 
 import type { ResultSet } from './drivers/dirivers';
-import type { IEntity } from './entities/entites';
+import type { IEntity } from './entities/entities';
 import type { Schema, SQLBuilder } from './schema/schema';
 
 export const IDatabaseService: interfaces.ServiceIdentifier<IDatabaseService> =

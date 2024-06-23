@@ -26,7 +26,7 @@ export class BotRunsService implements IBotRunsService {
     private readonly db: IDatabaseService,
 
     @inject(IBotEventsService)
-    private readonly emttier: IBotEventsService,
+    private readonly events: IBotEventsService,
   ) {
     this.puppets = new Map();
   }
@@ -195,31 +195,31 @@ export class BotRunsService implements IBotRunsService {
 
     puppet.on('start', () => {
       this.updateStatus(runId, 'waiting', 'Waiting for users to scan the code');
-      this.emttier.onStart(puppet);
+      this.events.onStart(puppet);
     });
 
     puppet.on('scan', (qrcode, status) => {
       this.updateStatus(runId, 'scaning', `Scan QR code is status(${status})`);
-      this.emttier.onScan(puppet, qrcode, status);
+      this.events.onScan(puppet, qrcode, status);
     });
 
     puppet.on('stop', () => {
       puppets.delete(name);
 
       this.updateStatus(runId, 'stopped', 'Bot stop.');
-      this.emttier.onStop(puppet);
+      this.events.onStop(puppet);
     });
 
     puppet.on('logout', user => {
       puppets.delete(name);
 
       this.updateStatus(runId, 'logout', `Bot(${user.name()}) logout.`);
-      this.emttier.onLogout(puppet, user);
+      this.events.onLogout(puppet, user);
     });
 
     puppet.on('login', user => {
       this.updateStatus(runId, 'login', `Bot(${user.name()}) login.`);
-      this.emttier.onLogin(puppet, user);
+      this.events.onLogin(puppet, user);
     });
 
     puppet.on('error', error => {
@@ -234,11 +234,11 @@ export class BotRunsService implements IBotRunsService {
       // puppets.delete(name);
 
       this.updateStatus(runId, 'failed', error.message);
-      this.emttier.onError(puppet, error);
+      this.events.onError(puppet, error);
     });
 
     puppet.on('message', message => {
-      this.emttier.onMessage(puppet, message);
+      this.events.onMessage(puppet, message);
     });
 
     await puppet.start();

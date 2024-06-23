@@ -2,6 +2,7 @@ version: "0.2"
 ignorePaths:
   - archive
   - dist
+  - migrations
   - node_modules
 dictionaries:
   - en_US
@@ -14,43 +15,18 @@ dictionaries:
   - typescript
   - filetypes
 words:
-  - aisearch
-  - aistudio
-  - bduss
-  - chatglm
-  - claudeai
-  - deepl
-  - dingtalk
-  - douban
-  - erniebot
-  - glmapi
-  - gptapi
-  - hotlist
-  - hunyuan
-  - jiti
-  - keyv
-  - kimi
-  - langchain
-  - languagedetect
-  - llmapi
-  - llms
-  - moyu
-  - msgtype
-  - openai
-  - popmart
-  - preinstall
-  - qian
-  - qianwen
-  - qiniu
-  - tiktoken
-  - trivago
-  - urllib
-  - userid
+  - abortable
+  - eventsource
+  - filehelper
+  - hackai
+  - inversify
+  - libsql
+  - loglevel
+  - logtime
+  - qrcode
+  - scaning
   - wechat
   - wechaty
-  - xinghuo
-  - xverse
-  - yiyan
-  - yiyian
 ignoreWords:
+  - trivago
   - zhengxs

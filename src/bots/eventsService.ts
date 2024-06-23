@@ -20,7 +20,7 @@ export interface IBotLog {
 
 @injectable()
 export class BotEventsService implements IBotEventsService {
-  private readonly emttier = new EventEmitter();
+  private readonly emitter = new EventEmitter();
 
   async onStart(puppet: Wechaty): Promise<void> {
     const log: IBotLog = {
@@ -35,7 +35,7 @@ export class BotEventsService implements IBotEventsService {
     };
 
     console.info('%s [%s] Puppet(%s)', log.time, log.bot.name, log.message);
-    this.emttier.emit('log', log);
+    this.emitter.emit('log', log);
   }
 
   async onStop(puppet: Wechaty): Promise<void> {
@@ -51,7 +51,7 @@ export class BotEventsService implements IBotEventsService {
     };
 
     console.info('%s [%s] Puppet(%s)', log.time, log.bot.name, log.message);
-    this.emttier.emit('log', log);
+    this.emitter.emit('log', log);
   }
 
   async onError(puppet: Wechaty, error: Error): Promise<void> {
@@ -68,7 +68,7 @@ export class BotEventsService implements IBotEventsService {
     };
 
     console.error('%s [%s] Puppet(%s)', log.time, log.bot.name, log.message);
-    this.emttier.emit('log', log);
+    this.emitter.emit('log', log);
   }
 
   async onScan(puppet: Wechaty, qrcode: string, status: number): Promise<void> {
@@ -84,7 +84,7 @@ export class BotEventsService implements IBotEventsService {
     };
 
     console.info('%s [%s] Puppet(%s)', log.time, log.bot.name, log.message);
-    this.emttier.emit('log', log);
+    this.emitter.emit('log', log);
   }
 
   async onLogin(puppet: Wechaty, user: Contact): Promise<void> {
@@ -100,7 +100,7 @@ export class BotEventsService implements IBotEventsService {
     };
 
     console.info('%s [%s] Puppet(%s)', log.time, log.bot.name, log.message);
-    this.emttier.emit('log', log);
+    this.emitter.emit('log', log);
   }
 
   async onLogout(puppet: Wechaty, user: Contact): Promise<void> {
@@ -116,7 +116,7 @@ export class BotEventsService implements IBotEventsService {
     };
 
     console.info('%s [%s] Puppet(%s)', log.time, log.bot.name, log.message);
-    this.emttier.emit('log', log);
+    this.emitter.emit('log', log);
   }
 
   async onMessage(puppet: Wechaty, message: Message) {
@@ -132,12 +132,12 @@ export class BotEventsService implements IBotEventsService {
       },
       event: 'start',
       level: 'info',
-      message: `reveived ${talker.name()}(${talker.type()}) message(${msgType}) from ${room ? `room(${room.topic()})` : 'individual'}`,
+      message: `receive ${talker.name()}(${talker.type()}) message(${msgType}) from ${room ? `room(${room.topic()})` : 'individual'}`,
       time: logtime(),
     };
 
     console.info('%s [%s] Puppet(%s)', log.time, log.bot.name, log.message);
-    this.emttier.emit('log', log);
+    this.emitter.emit('log', log);
   }
 
   logs(name: string | undefined, signal: AbortSignal): ReadableStream<string> {
@@ -153,10 +153,10 @@ export class BotEventsService implements IBotEventsService {
           controller.enqueue(`${log.time} [${log.bot.name}] ${log.message} \n`);
         };
 
-        this.emttier.on('log', onLog);
+        this.emitter.on('log', onLog);
 
         signal.addEventListener('abort', () => {
-          this.emttier.off('scan', onLog);
+          this.emitter.off('scan', onLog);
 
           if (signal.aborted) return;
 

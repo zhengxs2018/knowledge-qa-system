@@ -20,7 +20,7 @@ import { IDatabaseService } from './database/database';
 import { DatabaseService } from './database/databaseService';
 import { MainServer } from './server/main';
 
-export class MainApplition {
+export class MainApplication {
   toNodeHandler() {
     const [container] = this.createServices();
     return new MainServer(container).toNodeHandler();

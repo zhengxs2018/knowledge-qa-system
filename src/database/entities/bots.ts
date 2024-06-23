@@ -7,7 +7,7 @@ import {
 import { IsInt, IsString, validateOrReject } from 'class-validator';
 
 import type { Table } from '../schema/schema';
-import { type IEntity } from './entites';
+import { type IEntity } from './entities';
 
 export class BotsEntity implements IEntity<'bots'> {
   @Exclude()
