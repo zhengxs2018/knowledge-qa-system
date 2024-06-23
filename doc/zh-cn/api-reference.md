@@ -32,7 +32,7 @@
 
 ### 创建木偶并运行
 
-`GET /bots/:name/runs/create`
+`POST /bots/:name/runs`
 
 创建一个傀儡，并在这次请求中运行它。
 
