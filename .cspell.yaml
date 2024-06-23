@@ -21,8 +21,10 @@ words:
   - hackai
   - inversify
   - libsql
+  - listhen
   - loglevel
   - logtime
+  - qiniu
   - qrcode
   - scaning
   - wechat

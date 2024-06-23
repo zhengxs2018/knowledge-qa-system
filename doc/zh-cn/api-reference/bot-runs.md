@@ -6,7 +6,7 @@
 
 ## 创建木偶并运行
 
-`POST /bots/{name}/runs`
+`POST /v1/bots/{name}/runs`
 
 创建一个傀儡，并在这次请求中运行它。
 
@@ -18,7 +18,7 @@
 
 取消傀儡运行。
 
-`GET /bots/{name}/runs/cancel`
+`GET /v1/bots/{name}/runs/cancel`
 
 > [!TIP]
 > 一个傀儡只创建一个运行对象，不会重复创建

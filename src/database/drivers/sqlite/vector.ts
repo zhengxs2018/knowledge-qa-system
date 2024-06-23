@@ -12,7 +12,7 @@ import {
 } from 'drizzle-orm/sqlite-core';
 
 export interface SQLiteVectorConfig {
-  dimensions: number;
+  dimensions?: number;
 }
 
 export type SQLiteVectorBuilderInitial<TName extends string> =
@@ -30,9 +30,9 @@ export class SQLiteVectorBuilder<
 > extends SQLiteColumnBuilder<T, { dimensions: number | undefined }> {
   static readonly [entityKind]: string = 'SQLiteVectorBuilder';
 
-  constructor(name: T['name'], config: SQLiteVectorConfig) {
+  constructor(name: T['name'], config?: SQLiteVectorConfig) {
     super(name, 'string', 'SQLiteVector');
-    this.config.dimensions = config.dimensions;
+    this.config.dimensions = config?.dimensions;
   }
 
   /** @internal */
@@ -71,7 +71,7 @@ export class SQLiteVector<
 
 export function vector<TName extends string>(
   name: TName,
-  config: SQLiteVectorConfig,
+  config?: SQLiteVectorConfig,
 ): SQLiteVectorBuilderInitial<TName> {
   return new SQLiteVectorBuilder(name, config);
 }

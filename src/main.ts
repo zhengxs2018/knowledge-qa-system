@@ -8,6 +8,7 @@ import { MainApplication } from './app';
 async function main() {
   try {
     const main = new MainApplication();
+
     const server = createServer(main.toNodeHandler());
 
     const port = await getPort();

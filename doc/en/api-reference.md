@@ -6,7 +6,7 @@ Build bots that can call models and chat conversations.
 
 ### List bots
 
-`GET /bots`
+`GET /v1/bots`
 
 Returns a list of bots.
 
@@ -16,7 +16,7 @@ A list of bots objects.
 
 ### Retrieve bot
 
-`GET /bots/{name}`
+`GET /v1/bots/{name}`
 
 Retrieves a bot.
 
@@ -32,7 +32,7 @@ Related guide: [Bots](#bots) and Wechaty Puppets.
 
 ### Create puppet and run
 
-`POST /bots/{name}/runs`
+`POST /v1/bots/{name}/runs`
 
 Create a puppet and run it in one request.
 
@@ -42,7 +42,7 @@ A run object.
 
 ### Cancel a run
 
-`GET /bots/{name}/runs/cancel`
+`GET /v1/bots/{name}/runs/cancel`
 
 Cancels a run that is puppet.
 
@@ -58,7 +58,7 @@ Related guide: [Bots](#bots)
 
 ### Listen to all bot logs
 
-`GET /bots/logs`
+`GET /v1/bots/logs`
 
 #### Returns
 
@@ -66,7 +66,7 @@ Returns a list of log object.
 
 ### Listen to a bot logs
 
-`GET /bots/{name}/logs`
+`GET /v1/bots/{name}/logs`
 
 #### Returns
 

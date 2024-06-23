@@ -6,7 +6,7 @@ Listen to bot event logs
 
 ## 监听所有机器人日志
 
-`GET /bots/logs`
+`GET /v1/bots/logs`
 
 ### 返回
 
@@ -14,7 +14,7 @@ Listen to bot event logs
 
 ## 监听指定机器人日志
 
-`GET /bots/{name}/logs`
+`GET /v1/bots/{name}/logs`
 
 ### 返回
 

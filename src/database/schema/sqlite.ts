@@ -2,6 +2,26 @@ import { sql } from 'drizzle-orm';
 import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 
 export function defineSQLiteSchema() {
+  // Common
+  const files = sqliteTable('files', {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    filename: text('filename').notNull(),
+    mimetype: text('mimetype').notNull(),
+    size: integer('size').notNull(),
+    hash: text('hash').unique().notNull(),
+    key: text('storage_key').unique().notNull(),
+    // TODO support more storage strategies
+    strategy: text('storage_strategy', {
+      enum: ['local'],
+    })
+      .notNull()
+      .default('local'),
+    createdAt: text('created_at')
+      .default(sql`(CURRENT_TIMESTAMP)`)
+      .notNull(),
+  });
+
+  // Bots
   const bots = sqliteTable('bots', {
     id: integer('id').primaryKey({ autoIncrement: true }),
     name: text('name').unique().notNull(),
@@ -57,6 +77,10 @@ export function defineSQLiteSchema() {
   });
 
   return {
+    // Common
+    files,
+
+    // Bots
     bots,
     botInstances,
     botRuns,

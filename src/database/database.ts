@@ -16,5 +16,7 @@ export interface IDatabaseService {
 
   update<Name extends keyof Schema>(name: Name): SQLBuilder.Update<Name>;
 
+  del<Name extends keyof Schema>(name: Name): SQLBuilder.Delete<Name>;
+
   save<Name extends keyof Schema>(entity: IEntity<Name>): Promise<ResultSet>;
 }

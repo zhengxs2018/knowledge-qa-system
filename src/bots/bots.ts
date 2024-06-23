@@ -6,6 +6,9 @@ export const IBotsService: interfaces.ServiceIdentifier<IBotsService> =
   Symbol('BotsService');
 
 export interface IBot {
+  /**
+   * The identifier.
+   */
   id: number;
 
   /**
@@ -24,7 +27,7 @@ export interface IBot {
   object: 'bot';
 
   /**
-   * The Unix timestamp (in seconds) when the model was created.
+   * The Unix timestamp when the model was created.
    */
   created: number;
 }
