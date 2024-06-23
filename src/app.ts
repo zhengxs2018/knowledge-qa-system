@@ -7,8 +7,8 @@ import {
   type IParsedArgs,
 } from './base/common/environment/environment';
 import { EnvironmentService } from './base/common/environment/environmentService';
-import { IFileService } from './base/common/files/files';
-import { FileService } from './base/common/files/filesService';
+import { IFilesService } from './base/common/files/files';
+import { FilesService } from './base/common/files/filesService';
 import { GlobalContainer } from './base/common/instantiation/instantiation';
 import { IBotsService } from './bots/bots';
 import { BotsService } from './bots/botsService';
@@ -19,8 +19,11 @@ import { BotRunsService } from './bots/runsService';
 import { IDatabaseService } from './database/database';
 import { DatabaseService } from './database/databaseService';
 import { MainServer } from './server/main';
+import { IFilesStorageService } from './storage/files';
+import { FilesStorageService } from './storage/filesService';
 
 export class MainApplication {
+  // TODO Use h3 and listhen to support deno, bun, serverless, etc.
   toNodeHandler() {
     const [container] = this.createServices();
     return new MainServer(container).toNodeHandler();
@@ -30,20 +33,23 @@ export class MainApplication {
     const args = this.resolveArgs();
     const environmentService = new EnvironmentService(args);
     const configurationService = new ConfigurationService(environmentService);
-    const fileService = new FileService(environmentService);
+    const filesService = new FilesService(environmentService);
 
-    // Common
+    // Base
     GlobalContainer.bind(IEnvironmentService).toConstantValue(
       environmentService,
     );
     GlobalContainer.bind(IConfigurationService).toConstantValue(
       configurationService,
     );
-    GlobalContainer.bind(IFileService).toConstantValue(fileService);
+    GlobalContainer.bind(IFilesService).toConstantValue(filesService);
 
-    // Database
+    // Common Service
     GlobalContainer.bind(IDatabaseService)
       .to(DatabaseService)
+      .inSingletonScope();
+    GlobalContainer.bind(IFilesStorageService)
+      .to(FilesStorageService)
       .inSingletonScope();
 
     // Bots
@@ -57,7 +63,7 @@ export class MainApplication {
       GlobalContainer,
       environmentService,
       configurationService,
-      fileService,
+      filesService,
     ] as const;
   }
 

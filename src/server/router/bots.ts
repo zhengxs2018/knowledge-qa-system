@@ -22,13 +22,13 @@ export class BotsView implements IServerRouterView {
   ) {}
 
   addRoutes(router: IServerRouter): void {
-    router.get('/bots', async ctx => {
+    router.get('/v1/bots', async ctx => {
       ctx.status = 200;
       ctx.type = 'application/json';
       ctx.body = await this.bots.list();
     });
 
-    router.get('/bots/:name/', async ctx => {
+    router.get('/v1/bots/:name/', async ctx => {
       const name = ctx.params.name;
 
       ctx.status = 200;
@@ -36,7 +36,7 @@ export class BotsView implements IServerRouterView {
       ctx.body = await this.bots.retrieve(name);
     });
 
-    router.post('/bots/:name/runs', async ctx => {
+    router.post('/v1/bots/:name/runs', async ctx => {
       const name = ctx.params.name;
 
       ctx.status = 200;
@@ -44,7 +44,7 @@ export class BotsView implements IServerRouterView {
       ctx.body = await this.botRuns.create(name);
     });
 
-    router.get('/bots/:name/runs/cancel', async ctx => {
+    router.get('/v1/bots/:name/runs/cancel', async ctx => {
       const name = ctx.params.name;
 
       ctx.status = 200;
@@ -52,7 +52,7 @@ export class BotsView implements IServerRouterView {
       ctx.body = await this.botRuns.cancel(name);
     });
 
-    router.get('/bots/logs/', async ctx => {
+    router.get('/v1/bots/logs/', async ctx => {
       const ac = new AbortController();
       const stream = this.botEvents.logs(undefined, ac.signal);
 
@@ -66,7 +66,7 @@ export class BotsView implements IServerRouterView {
       ctx.body = Readable.fromWeb(stream.pipeThrough(new TextEncoderStream()));
     });
 
-    router.get('/bots/:name/logs', ctx => {
+    router.get('/v1/bots/:name/logs', ctx => {
       const name = ctx.params.name;
 
       const ac = new AbortController();

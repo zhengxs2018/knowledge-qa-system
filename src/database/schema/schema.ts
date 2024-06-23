@@ -1,4 +1,5 @@
 import type {
+  SQLiteDeleteBase,
   SQLiteInsertBuilder,
   SQLiteUpdateBuilder,
 } from 'drizzle-orm/sqlite-core';
@@ -14,6 +15,10 @@ export type Table<Name extends keyof Schema> = {
 } & Schema[Name]['$inferInsert'];
 
 export namespace Table {
+  export type FileSelect = Schema['files']['$inferSelect'];
+  export type FileInsert = Schema['files']['$inferInsert'];
+  export type FileStrategy = FileSelect['strategy'];
+
   export type BotSelect = Schema['bots']['$inferSelect'];
   export type BotInsert = Schema['bots']['$inferInsert'];
 
@@ -33,6 +38,12 @@ export namespace SQLBuilder {
   >;
 
   export type Update<Name extends keyof Schema> = SQLiteUpdateBuilder<
+    Schema[Name],
+    'async',
+    ResultSet
+  >;
+
+  export type Delete<Name extends keyof Schema> = SQLiteDeleteBase<
     Schema[Name],
     'async',
     ResultSet

@@ -2,12 +2,12 @@ import KoaRouter from '@koa/router';
 import { Container } from 'inversify';
 import Koa from 'koa';
 
-import { IServerApp } from './app';
 import { BotsView } from './router/bots';
 import { HomeView } from './router/home';
 import { IServerRouter, IServerRouterView } from './router/router';
+import { FilesView } from './router/files';
 
-export class MainServer extends Koa implements IServerApp {
+export class MainServer extends Koa {
   private readonly router: KoaRouter;
 
   constructor(private readonly container: Container) {
@@ -15,11 +15,12 @@ export class MainServer extends Koa implements IServerApp {
 
     this.router = new KoaRouter();
 
-    container.bind(IServerApp).toConstantValue(this);
+    container.bind(MainServer).toConstantValue(this);
     container.bind(IServerRouter).toConstantValue(this.router);
 
     container.bind(IServerRouterView).to(HomeView);
     container.bind(IServerRouterView).to(BotsView);
+    container.bind(IServerRouterView).to(FilesView);
   }
 
   toNodeHandler() {

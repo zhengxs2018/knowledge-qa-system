@@ -36,11 +36,17 @@
    $ curl -X POST http://localhost:3000/bots/ade/runs
    ```
 
-如果希望进行调试，可以使用 vscode 的 `Run And DEBUG` 启动程序。
+### 启动本地调试
+
+默认支持 VS Code 的 [调试](https://code.visualstudio.com/docs/editor/debugging) 功能：
+
+1. 打开 `Run And DEBUG` 启动程序
+2. 选择 `Run Program` 配置
+3. 在希望调试的代码行添加断点或使用 `debugger` 关键字。
 
 ## 文档
 
-- [API Reference](./doc/zh-cn/api-reference.md)
+- [API Reference](./doc/zh-cn/api-reference/index.md)
 
 ## 线路图
 

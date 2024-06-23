@@ -46,6 +46,11 @@ export class DatabaseService implements IDatabaseService {
     return connection.update(schema[name]);
   }
 
+  del<Name extends keyof Schema>(name: Name) {
+    const { connection, schema } = this;
+    return connection.delete(schema[name]);
+  }
+
   save<Name extends keyof Schema>(entity: IEntity<Name>): Promise<ResultSet> {
     return this.insert(entity.__table).values(entity.toJSON());
   }

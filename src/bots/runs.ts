@@ -43,7 +43,7 @@ export interface IBotRun {
   object: 'bot.run';
 
   /**
-   * The Unix timestamp (in seconds) when the model was created.
+   * The Unix timestamp when the model was created.
    */
   created: number;
 }
